@@ -364,7 +364,7 @@ strong {
   padding: 50px;
   padding-bottom: 0;
   min-height: 665px;
-  border-bottom: 15px solid var(--primary-color);
+  /*border-bottom: 15px solid var(--primary-color);*/
 }
 
 @media screen and (min-width: 991px) {
@@ -846,3 +846,6 @@ strong {
   }
 }
 
+.custom-block { border-color: var(--primary-color); }
+.custom-block .custom-btn { background: var(--primary-color); }
+.custom-block .custom-btn:hover { background: var(--custom-btn-bg-hover-color); }
