@@ -11,37 +11,37 @@ https://templatemo.com/tm-585-barber-shop
   CUSTOM PROPERTIES ( VARIABLES )             
 -----------------------------------------*/
 :root {
-  --white-color:                  #ffffff;
-  --primary-color:                #d6a354;
-  --secondary-color:              #c12828;
-  --section-bg-color:             #f0f8ff;
-  --custom-btn-bg-color:          #c12828;
-  --custom-btn-bg-hover-color:    #FDBB2D;
-  --dark-color:                   #000000;
-  --p-color:                      #717275;
-  --border-color:                 #7fffd4;
-  --link-hover-color:             #B22727;
+    --white-color:                  #ffffff;
+    --primary-color:                #06b6d4;   /* морская волна */
+    --secondary-color:              #0f172a;   /* почти чёрный (тёмный слейтовый) */
+    --section-bg-color:             #f3f4f6;   /* светло-серый фон секций */
+    --custom-btn-bg-color:          #06b6d4;   /* кнопки — бирюзовые */
+    --custom-btn-bg-hover-color:    #0891b2;   /* ховер — темнее бирюзы */
+    --dark-color:                   #0f172a;
+    --p-color:                      #4b5563;
+    --border-color:                 #e5e7eb;   /* нейтральный бордер */
+    --link-hover-color:             #0891b2;
 
-  --body-font-family:             'Unbounded', cursive;
+    --body-font-family:             'Unbounded', cursive;
 
-  --h1-font-size:                 74px;
-  --h2-font-size:                 46px;
-  --h3-font-size:                 32px;
-  --h4-font-size:                 28px;
-  --h5-font-size:                 24px;
-  --h6-font-size:                 22px;
-  --p-font-size:                  20px;
-  --btn-font-size:                16px;
-  --copyright-font-size:          14px;
+    --h1-font-size:                 74px;
+    --h2-font-size:                 46px;
+    --h3-font-size:                 32px;
+    --h4-font-size:                 28px;
+    --h5-font-size:                 24px;
+    --h6-font-size:                 22px;
+    --p-font-size:                  20px;
+    --btn-font-size:                16px;
+    --copyright-font-size:          14px;
 
-  --border-radius-large:          100px;
-  --border-radius-medium:         20px;
-  --border-radius-small:          10px;
+    --border-radius-large:          100px;
+    --border-radius-medium:         20px;
+    --border-radius-small:          10px;
 
-  --font-weight-thin:             200;
-  --font-weight-light:            300;
-  --font-weight-normal:           400;
-  --font-weight-bold:             700;
+    --font-weight-thin:             200;
+    --font-weight-light:            300;
+    --font-weight-normal:           400;
+    --font-weight-bold:             700;
 }
 
 body {
@@ -170,8 +170,8 @@ strong {
 }
 
 .custom-block-bg-overlay-wrap:hover {
-  background: linear-gradient(90deg, #FDBB2D 0%, #22C1C3 100%);
-  transform: scale(1.05);
+    background: linear-gradient(90deg, #e2e8f0 0%, #06b6d4 100%);
+    transform: scale(1.05);
 }
 
 .custom-block-bg-overlay-image {
@@ -208,6 +208,8 @@ strong {
   color: var(--white-color);
 }
 
+.custom-btn:hover { background: var(--custom-btn-bg-hover-color); }
+
 .custom-border-btn {
   background: transparent;
   border: 2px solid var(--custom-btn-bg-color);
@@ -229,6 +231,7 @@ strong {
 -----------------------------------------*/
 .sidebar {
   background: var(--primary-color);
+  /*background: var(--primary-color);*/
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -372,7 +375,7 @@ strong {
 
 .hero-section::after {
   content: "";
-  background: linear-gradient(90deg, #FDBB2D 0%, #22C1C3 100%);
+  background: linear-gradient(90deg, rgba(6,182,212,0.55) 0%, rgba(15,23,42,0.35) 100%);
   position: absolute;
   top: 0;
   right: 0;
@@ -401,6 +404,8 @@ strong {
 .custom-block .custom-btn {
   background: var(--primary-color);
 }
+
+.custom-btn { background: var(--custom-btn-bg-color); }
 
 .custom-block .custom-btn:hover {
   background: var(--secondary-color);
@@ -592,14 +597,14 @@ strong {
 }
 
 .contact-block-wrap {
-  background: var(--primary-color);
+  background: var(--secondary-color);
   border-radius: var(--border-radius-medium);
   padding: 0;
   min-height: 200px;
 }
 
 .contact-block {
-  background: var(--secondary-color);
+  background: #111827;
   border-radius: var(--border-radius-medium);
   transform: rotate(8deg);
   height: 100%;
