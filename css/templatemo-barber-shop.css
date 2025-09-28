@@ -849,3 +849,30 @@ strong {
 .custom-block { border-color: var(--primary-color); }
 .custom-block .custom-btn { background: var(--primary-color); }
 .custom-block .custom-btn:hover { background: var(--custom-btn-bg-hover-color); }
+
+.services-thumb video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* как background-size: cover */
+    border-radius: 15px; /* если нужно повторить скругления */
+    display: block;
+}
+
+.services-thumb video.services-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius-medium);
+    display: block;
+}
+
+.services-thumb {
+    aspect-ratio: 16 / 9; /* или 4/3, подгони под макет */
+    position: relative;
+    overflow: hidden;
+}
+
+.services-info h4 {
+    font-size: 18px; /* или меньше чем сейчас */
+    white-space: nowrap; /* запрещает перенос */
+}
