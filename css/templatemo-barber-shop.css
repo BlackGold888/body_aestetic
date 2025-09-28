@@ -354,7 +354,8 @@ strong {
   HERO        
 -----------------------------------------*/
 .hero-section {
-  background-image: url('../images/client-doing-hair-cut-barber-shop-salon.jpg');
+  /*background-image: url('../images/client-doing-hair-cut-barber-shop-salon.jpg');*/
+  background-image: url('../images/hero.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
