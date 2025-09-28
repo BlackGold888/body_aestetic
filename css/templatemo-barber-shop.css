@@ -876,3 +876,25 @@ strong {
     font-size: 18px; /* или меньше чем сейчас */
     white-space: nowrap; /* запрещает перенос */
 }
+
+@media (max-width: 767px) {
+    .services-info {
+        flex-direction: column;       /* в столбик */
+        align-items: flex-start;      /* выравнивание слева */
+        justify-content: flex-end;    /* тянуть вниз */
+        padding: 15px;
+    }
+
+    .services-info h4 {
+        font-size: 14px;
+        white-space: nowrap;        /* запрет переноса */
+        overflow: hidden;           /* обрезать */
+        text-overflow: ellipsis;    /* троеточие */
+        max-width: 75%;             /* чтобы оставалось место под цену */
+    }
+
+    .services-thumb-price {
+        font-size: 13px;
+        padding: 3px 8px;
+    }
+}
