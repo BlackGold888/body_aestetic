@@ -899,3 +899,28 @@ strong {
         padding: 3px 8px;
     }
 }
+.card-img-top {
+    height: 300px;          /* высота картинки в карточке */
+    object-fit: cover;      /* обрезает лишнее, сохраняя пропорции */
+    object-position: center; /* центрирует изображение */
+    border-radius: 8px;
+}
+.modal-content img {
+    max-height: 50vh; /* не больше 80% высоты окна */
+    object-fit: contain;
+}
+
+.case-image {
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.modal-content {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.modal-dialog {
+    max-width: 1000px;
+}
