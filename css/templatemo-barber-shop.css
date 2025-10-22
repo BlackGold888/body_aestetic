@@ -355,7 +355,7 @@ strong {
 -----------------------------------------*/
 .hero-section {
   /*background-image: url('../images/client-doing-hair-cut-barber-shop-salon.jpg');*/
-  background-image: url('../images/hero.png');
+  background-image: url('../images/barber/rufina.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -924,3 +924,64 @@ strong {
 .modal-dialog {
     max-width: 1000px;
 }
+
+/* ====== TEAM CARDS ====== */
+.custom-card{
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+}
+
+/* Единая высота и аккуратная обрезка (без растяжения) */
+.custom-card__img{
+    display: block;
+    width: 100%;
+    height: 340px;              /* подгони 300–360 при желании */
+    object-fit: cover;
+    object-position: center;
+    transition: transform .35s ease;
+}
+
+/* Небольшой масштаб при ховере */
+.custom-card:hover .custom-card__img{
+    transform: scale(1.03);
+}
+
+/* Плашка с именем и иконками */
+.team-info{
+    position: absolute;
+    left: 16px; right: 16px; bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 100px;
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(4px);
+}
+
+/* Утилиты, чтобы нацеливать кадр на лицо (подбирай под фото) */
+.face-top        { object-position: 50% 20%; }
+.face-top-left   { object-position: 35% 20%; }
+.face-top-right  { object-position: 65% 20%; }
+.face-left       { object-position: 30% 50%; }
+.face-right      { object-position: 70% 50%; }
+.face-center     { object-position: 50% 50%; }
+
+/* На всякий случай отключаем старые «косые» стили,
+   если где-то остались классы custom-block-bg-overlay-* */
+.custom-block-bg-overlay-wrap,
+.custom-block-bg-overlay-image{
+    transform: none !important;
+    margin: 0 !important;
+}
+
+#section_reviews blockquote {
+    margin: 0;
+    font-size: 1.02rem;
+    line-height: 1.55;
+}
+#section_reviews .card { border-radius: 14px; }
+#section_reviews .card-body { padding: 1.25rem 1.25rem 1.35rem; }
