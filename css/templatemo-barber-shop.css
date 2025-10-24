@@ -985,3 +985,54 @@ strong {
 }
 #section_reviews .card { border-radius: 14px; }
 #section_reviews .card-body { padding: 1.25rem 1.25rem 1.35rem; }
+
+/* === MOBILE FIX: name bottom-left, socials vertical at right center === */
+@media (max-width: 576px) {
+
+    .custom-card { position: relative; border-radius: 16px; box-shadow: 0 6px 18px rgba(0,0,0,.12); }
+    .custom-card__img { height: 280px; }
+
+    /* делаем контейнер «прозрачным» — дети ведут себя как прямые дети карточки */
+    .custom-card .team-info {
+        position: static !important;
+        display: contents !important;   /* КЛЮЧЕВОЕ */
+    }
+
+    /* имя — таблетка снизу слева */
+    .custom-card .team-info p {
+        position: absolute;
+        left: 12px;
+        bottom: 12px;
+        margin: 0;
+        padding: 8px 14px;
+        font-size: 16px;
+        line-height: 1.2;
+        border-radius: 14px;
+        background: rgba(255,255,255,.95);
+    }
+
+    /* соц-иконки — вертикально у правого края, по центру по высоте */
+    .custom-card .team-info .social-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        background: transparent;
+    }
+
+    .custom-card .team-info .social-icon-item a {
+        width: 36px;
+        height: 36px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: #0f2231;
+        color: #fff;
+        font-size: 18px;
+    }
+}
