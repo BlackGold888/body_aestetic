@@ -355,11 +355,11 @@ strong {
 -----------------------------------------*/
 .hero-section {
   /*background-image: url('../images/client-doing-hair-cut-barber-shop-salon.jpg');*/
-  background-image: url('../images/barber/rufina.jpg');
+  background-image: url('../images/hero.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  background-position: center;
+  background-position: top left;
   position: relative;
   overflow: hidden;
   padding: 50px;
