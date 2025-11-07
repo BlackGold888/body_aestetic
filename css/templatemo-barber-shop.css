@@ -374,6 +374,17 @@ strong {
   }
 }
 
+@media screen and (max-width: 991px) {
+    .hero-section {
+        height: 10vh;
+        background-size: contain;
+        color: black;
+    }
+
+    .hero-section .container p {
+    }
+}
+
 .hero-section::after {
   content: "";
   background: linear-gradient(90deg, rgba(6,182,212,0.55) 0%, rgba(15,23,42,0.35) 100%);
