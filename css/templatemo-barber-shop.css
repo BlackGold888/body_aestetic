@@ -1047,3 +1047,46 @@ strong {
         font-size: 18px;
     }
 }
+
+.telegram-floating {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #229ED9; /* цвет Telegram */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    opacity: 0.95;
+}
+
+.telegram-floating i {
+    font-size: 28px;
+    color: #fff;
+}
+
+.telegram-floating:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+    opacity: 1;
+}
+
+/* На очень маленьких экранах можно чуть поднять кнопку */
+@media (max-width: 576px) {
+    .telegram-floating {
+        right: 16px;
+        bottom: 16px;
+        width: 54px;
+        height: 54px;
+    }
+
+    .telegram-floating i {
+        font-size: 24px;
+    }
+}
