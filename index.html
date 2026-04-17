@@ -1,908 +1,948 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="AIURU Tashkent — аппаратная коррекция фигуры. Убираем живот и бока без спортзала и диет.">
+    <meta name="author" content="AIURU">
+    <title>AIURU Tashkent — аппаратная коррекция фигуры</title>
 
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>AIURU Tashkent</title>
-
-    <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500&display=swap" rel="stylesheet">
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="css/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ink: {
+                            950: '#07090f',
+                            900: '#0a0e1a',
+                            800: '#11172a',
+                            700: '#1a2236',
+                            600: '#26304a',
+                        },
+                        brand: {
+                            50:  '#ecfeff',
+                            100: '#cffafe',
+                            200: '#a5f3fc',
+                            300: '#67e8f9',
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                            700: '#0e7490',
+                            800: '#155e75',
+                            900: '#164e63',
+                        },
+                        gold: {
+                            100: '#fdf4e3',
+                            200: '#f6e4bc',
+                            300: '#ecd194',
+                            400: '#e0b872',
+                            500: '#d4a574',
+                            600: '#b8874f',
+                            700: '#8f6638',
+                        },
+                    },
+                    fontFamily: {
+                        display: ['Unbounded', 'system-ui', 'sans-serif'],
+                        body:    ['Manrope',   'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        glow:     '0 0 40px -10px rgba(6,182,212,0.45)',
+                        gold:     '0 0 40px -12px rgba(212,165,116,0.55)',
+                        sink:     '0 30px 60px -30px rgba(0,0,0,0.8)',
+                    },
+                    backgroundImage: {
+                        'radial-fade': 'radial-gradient(circle at 20% 0%, rgba(6,182,212,0.18), transparent 55%), radial-gradient(circle at 80% 100%, rgba(212,165,116,0.14), transparent 60%)',
+                        'mesh-hero':   'radial-gradient(80% 60% at 50% 0%, rgba(6,182,212,0.22) 0%, transparent 70%), radial-gradient(60% 50% at 80% 90%, rgba(212,165,116,0.18) 0%, transparent 70%), linear-gradient(180deg, #0a0e1a 0%, #07090f 100%)',
+                    },
+                }
+            }
+        }
+    </script>
 
     <link href="css/templatemo-barber-shop.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-ink-900 text-slate-200 font-body antialiased selection:bg-brand-500/40 selection:text-white">
+
+<!-- Floating Telegram -->
 <a href="https://t.me/Body_aesthetic_aiuru"
-   class="telegram-floating"
    target="_blank"
-   aria-label="Написать в Telegram">
-    <i class="bi-telegram"></i>
+   aria-label="Написать в Telegram"
+   class="telegram-floating group fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-brand-400 to-brand-600 text-white flex items-center justify-center shadow-glow hover:scale-110 active:scale-95 transition-transform duration-300">
+    <span class="absolute inset-0 rounded-full bg-brand-500/40 animate-ping-slow"></span>
+    <i class="bi-telegram text-2xl relative"></i>
 </a>
-<div class="container-fluid">
-    <div class="row">
 
-        <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+<!-- Mobile top bar -->
+<div class="md:hidden fixed top-0 inset-x-0 z-40 backdrop-blur-xl bg-ink-900/80 border-b border-white/5">
+    <div class="flex items-center justify-between px-4 py-3">
+        <a href="#section_1" class="flex items-center gap-2">
+            <img src="images/logo2-removebg-preview.png" alt="AIURU" class="h-9 w-auto">
+            <span class="font-display text-sm tracking-widest text-white">AIURU</span>
+        </a>
+        <button id="mobileMenuBtn" aria-label="Меню"
+                class="w-11 h-11 rounded-xl border border-white/10 bg-white/5 text-white flex items-center justify-center">
+            <i class="bi-list text-2xl"></i>
         </button>
+    </div>
+</div>
 
-        <nav id="sidebarMenu" class="col-md-4 col-lg-3 d-md-block sidebar collapse p-0">
+<div class="md:flex min-h-screen w-full max-w-full overflow-x-clip">
 
-            <div class="position-sticky sidebar-sticky d-flex flex-column justify-content-center align-items-center">
-                <a class="navbar-brand" href="index.html">
-                    <img src="images/logo2-removebg-preview.png" class="logo-image img-fluid" align="">
-                </a>
+    <!-- Sidebar -->
+    <aside id="sidebarMenu"
+           class="hidden md:flex fixed top-0 left-0 z-30 w-[300px] lg:w-[320px] h-screen flex-col items-center justify-between py-10 px-6 bg-ink-950/90 backdrop-blur-xl border-r border-white/5">
+        <!-- glow -->
+        <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.12),transparent_70%)]"></div>
 
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#section_1">Главная</a>
-                    </li>
-
-
-                    <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#section_cases">Кейсы</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#section_2">О нас</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#section_3">Услуги</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#section_4">Цены</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#section_5">Вопросы и ответы</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#section_reviews">Отзывы</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#section_6">Контакты</a>
-                    </li>
-                </ul>
+        <a href="#section_1" class="relative flex flex-col items-center gap-3 click-scroll">
+            <div class="relative">
+                <span class="absolute inset-0 rounded-full bg-brand-500/20 blur-2xl"></span>
+                <img src="images/logo2-removebg-preview.png" alt="AIURU" class="relative h-24 w-auto drop-shadow-[0_8px_20px_rgba(6,182,212,0.35)]">
             </div>
+            <span class="font-display text-lg tracking-[0.4em] text-white">AIURU</span>
+            <span class="text-[10px] tracking-[0.3em] text-gold-400 uppercase">Tashkent</span>
+        </a>
+
+        <nav class="relative w-full">
+            <ul class="flex flex-col gap-1">
+                <li><a class="nav-link click-scroll" href="#section_1"><span class="dot"></span>Главная</a></li>
+                <li><a class="nav-link click-scroll" href="#section_cases"><span class="dot"></span>Кейсы</a></li>
+                <li><a class="nav-link click-scroll" href="#section_2"><span class="dot"></span>О нас</a></li>
+                <li><a class="nav-link click-scroll" href="#section_3"><span class="dot"></span>Услуги</a></li>
+                <li><a class="nav-link click-scroll" href="#section_4"><span class="dot"></span>Цены</a></li>
+                <li><a class="nav-link click-scroll" href="#section_5"><span class="dot"></span>Вопросы и ответы</a></li>
+                <li><a class="nav-link click-scroll" href="#section_reviews"><span class="dot"></span>Отзывы</a></li>
+                <li><a class="nav-link click-scroll" href="#section_6"><span class="dot"></span>Контакты</a></li>
+            </ul>
         </nav>
 
-        <div class="col-md-8 ms-sm-auto col-lg-9 p-0">
-            <section class="hero-section d-flex justify-content-end align-items-end" id="section_1">
-
-                <div class="container mb-4">
-                    <div class="row">
-
-                        <div class="col-lg-6 col-12 flex" style="top: 200px">
-<!--                            <h1 class="text-white mb-lg-3 mb-4"><strong><em>AIURU</em>-->
-<!--                                &lt;!&ndash;                                            <em>Aesthetic</em>&ndash;&gt;-->
-<!--                            </strong></h1>-->
-                            <p class="text-white"><strong><em>УБИРАЕМ ЖИВОТ И БОКА БЕЗ СПОРТЗАЛА И ДИЕТ</em></p>
-                            <br>
-                            <a class="btn custom-btn custom-border-btn custom-btn-bg-white smoothscroll me-2 mb-2"
-                               href="#section_2">О нас</a>
-
-                            <a class="btn custom-btn smoothscroll mb-2 me-2" href="#section_3">Что мы делаем?</a>
-
-                            <a href="https://t.me/Body_aesthetic_aiuru?text=Хочу%20записаться%20на%20бесплатную%20диагностику"
-                               target="_blank"
-                               class="btn-diagnostic mb-2">
-                                <span class="pulse-dot"></span>
-                                Записаться на бесплатную диагностику
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-<!--                <div class="custom-block d-lg-flex flex-column justify-content-center align-items-center">-->
-<!--                    <img src="images/price.png" class="custom-block-image img-fluid" alt="">-->
-
-<!--                    <h4><strong class="text-white">Успейте! Получите лучший результат.</strong></h4>-->
-
-<!--                    <a href="#booking-section" class="smoothscroll btn custom-btn custom-btn-italic mt-3">Записаться</a>-->
-<!--                </div>-->
-            </section>
-            <section class="section-padding" id="section_cases">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 col-12">
-                            <h2 class="mb-5">Кейсы наших клиентов</h2>
-                            <p class="mb-4">
-                                После бесплатной диагностики специалист подберёт курс именно под вас.
-                            </p>
-                        </div>
-                        <!-- Кейс 1 -->
-                        <div class="col-md-6 col-lg-6 mb-4">
-                            <div class="card h-100 shadow-sm border-0">
-                                <a href="images/cases/case1.jpg" data-bs-toggle="modal" data-bs-target="#caseModal1">
-                                    <img src="images/cases/case1.jpg" class="card-img-top" alt="Минус 5 см — до/после">
-                                </a>
-                                <div class="card-body">
-                                    <h5 class="card-title mb-2">-5 см в талии</h5>
-                                    <p class="small text-muted mb-2">Мужчина, 26 лет</p>
-                                    <p class="card-text">Курс 1,5 месяца, 8 сеансов ударные процедуры на живот и бока и обязательно лимфодренаж на все тело.
-                                        Стоимость <b>3 375 000 cум</b> ( без скидки 6 475 000 сум). Курс назначается только при личном осмотре специалиста.
-                                    </p>
-                                </div>
-                                <div class="card-footer bg-white border-0 pt-0">
-                                    <button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#caseModal1">
-                                        Смотреть фото
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 col-lg-6 mb-4">
-                            <div class="card h-100 shadow-sm border-0">
-                                <a href="images/cases/case2.jpg" data-bs-toggle="modal" data-bs-target="#caseModal2">
-                                    <img src="images/cases/case2.jpg" class="card-img-top" alt="Минус 5 см в животе — до/после">
-                                </a>
-                                <div class="card-body">
-                                    <h5 class="card-title mb-2">-5 см в животе</h5>
-                                    <p class="small text-muted mb-2">Мужчина, 36 лет</p>
-                                    <p class="card-text">
-                                        Занимается спортом, но локально не уходил живот. Не нравился объём в зоне пресса — хотел увидеть «кубики».
-                                        После курса минус 5 см в объёме. Теперь чаще ездит в тёплые страны отдыхать ☀️. Cтоимость <b> 1 750 000 cум</b>  . Курс подбирается индивидуально.
-                                    </p>
-                                </div>
-                                <div class="card-footer bg-white border-0 pt-0">
-                                    <button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#caseModal2">
-                                        Смотреть фото
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Кейс 3 -->
-                        <div class="col-md-6 col-lg-6 mb-4">
-                            <div class="card h-100 shadow-sm border-0">
-                                <a href="images/cases/case3.jpg" data-bs-toggle="modal" data-bs-target="#caseModal3">
-                                    <img src="images/cases/case3.jpg" class="card-img-top" alt="Минус 10 см в животе — до/после">
-                                </a>
-                                <div class="card-body">
-                                    <h5 class="card-title mb-2">-10 см в животе</h5>
-                                    <p class="small text-muted mb-2">Мужчина, 35 лет, госслужащий</p>
-                                    <p class="small text-muted mb-2">17 сеансов 2,5 месяца</p>
-                                    <p class="card-text">Стоимость абонемента  <b>11 850 000 сум</b> ( без скидки 17 250 000 сум ). Выгодный тариф, так как результат до минус 15 см в объеме и 1-1,5 года сохраняется результат!
-                                        Точная стоимость расчитывается только после консультации специалиста.</p>
-                                </div>
-                                <div class="card-footer bg-white border-0 pt-0">
-                                    <button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#caseModal3">
-                                        Смотреть фото
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Кейс 4 -->
-                        <div class="col-md-6 col-lg-6 mb-4">
-                            <div class="card h-100 shadow-sm border-0">
-                                <a href="images/cases/case4.jpg" data-bs-toggle="modal" data-bs-target="#caseModal4">
-                                    <img src="images/cases/case4.jpg" class="card-img-top" alt="Минус 6 см в животе — до/после">
-                                </a>
-                                <div class="card-body">
-                                    <h5 class="card-title mb-2">-6 см в животе</h5>
-                                    <p class="small text-muted mb-2">Мужчина, 33 года</p>
-                                    <p class="small text-muted mb-2">8 сеансов 1,5 месяца</p>
-                                    <p class="card-text">
-                                        Стоимость абонемента <b>3 375 000 сум</b> ( без скидки 6 475 000 сум). Стоимость варьируется от первоначально состояния организма, от запроса клиента</p>
-                                </div>
-                                <div class="card-footer bg-white border-0 pt-0">
-                                    <button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#caseModal4">
-                                        Смотреть фото
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-4">
-                            <a href="https://t.me/Body_aesthetic_aiuru?text=Хочу%20бесплатную%20диагностику%20после%20просмотра%20кейсов"
-                               target="_blank"
-                               class="btn-diagnostic mb-5">
-                                <span class="pulse-dot"></span>
-                                Записаться на бесплатную диагностику
-                            </a>
-                        </div>
-                        <!-- Под следующий кейс просто копируйте карточку выше и меняйте данные -->
-                    </div>
-                </div>
-
-                <!-- Модалка для кейса 1 -->
-                <div class="modal fade" id="caseModal1" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-xl">
-                        <div class="modal-content border-0 bg-light">
-                            <button type="button" class="btn-close ms-auto me-3 mt-3" data-bs-dismiss="modal" aria-label="Close"></button>
-
-                            <div class="row g-0 align-items-center">
-                                <div class="col-md-7 p-3 text-center">
-                                    <img src="images/cases/case1.jpg" class="img-fluid rounded shadow-sm case-image" alt="Минус 5 см — до/после">
-                                </div>
-                                <div class="col-md-5 p-4">
-                                    <h4 class="mb-3">Результат: <span class="text-success">–5 см в талии</span></h4>
-                                    <p><strong>Мужчина, 26 лет.</strong></p>
-                                    <p>Похудел сам на 7 кг, но кожа не подтянулась. Запрос — максимально подтянуть кожу и уменьшить объём на 5 см. После курса над ремнём больше не образуется складка, талия стала подтянутой и визуально стройнее.</p>
-                                    <hr>
-                                    <p class="text-muted small mb-0">📅 Срок курса: 10 сеансов, 1,5 месяца<br>💆 Тип работы: аппаратное моделирование тела</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Модалка для кейса 2 -->
-                <div class="modal fade" id="caseModal2" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-xl">
-                        <div class="modal-content border-0 bg-light">
-                            <button type="button" class="btn-close ms-auto me-3 mt-3" data-bs-dismiss="modal" aria-label="Close"></button>
-
-                            <div class="row g-0 align-items-center">
-                                <div class="col-md-7 p-3 text-center">
-                                    <img src="images/cases/case2.jpg" class="img-fluid rounded shadow-sm case-image" alt="Минус 5 см — до/после">
-                                </div>
-                                <div class="col-md-5 p-4">
-                                    <h4 class="mb-3">Результат: <span class="text-success">–5 см в области живота</span></h4>
-                                    <p><strong>Мужчина, 36 лет.</strong></p>
-                                    <p>Регулярно занимается спортом, но локально не уходил живот. Не нравился объём в зоне пресса — хотел увидеть свои «кубики». После курса –5 см в объёме. Теперь чаще ездит в тёплые страны отдыхать 😄</p>
-                                    <hr>
-                                    <p class="text-muted small mb-0">📅 Срок курса: 6 сеансов , 1 месяц<br>💆 Тип работы: коррекция тела и локальных жировых отложений</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Модалка для кейса 3 -->
-                <div class="modal fade" id="caseModal3" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-xl">
-                        <div class="modal-content border-0 bg-light">
-                            <button type="button" class="btn-close ms-auto me-3 mt-3" data-bs-dismiss="modal" aria-label="Close"></button>
-
-                            <div class="row g-0 align-items-center">
-                                <div class="col-md-7 p-3 text-center">
-                                    <img src="images/cases/case3.jpg" class="img-fluid rounded shadow-sm case-image" alt="Минус 10 см — до/после">
-                                </div>
-                                <div class="col-md-5 p-4">
-                                    <h4 class="mb-3">Результат: <span class="text-success">–10 см в области живота</span></h4>
-                                    <p><strong>Мужчина, 35 лет, госслужащий.</strong></p>
-                                    <p>Проблема — выраженный объём живота, создающий дискомфорт в обычной жизни: неудобно завязывать обувь, стричь ногти, неловкость перед коллегами.
-                                        Из-за плотного графика не удавалось заниматься спортом и соблюдать питание.
-                                        После курса –10 см в объёме, улучшился сон и значительно снизилась одышка.</p>
-                                    <hr>
-                                    <p class="text-muted small mb-0">📅 Срок курса: 17 сеансов , 2,5 месяца<br>💆 Тип работы: глубокое аппаратное воздействие на зону живота</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Модалка для кейса 4 -->
-                <div class="modal fade" id="caseModal4" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-xl">
-                        <div class="modal-content border-0 bg-light">
-                            <button type="button" class="btn-close ms-auto me-3 mt-3" data-bs-dismiss="modal" aria-label="Close"></button>
-
-                            <div class="row g-0 align-items-center">
-                                <div class="col-md-7 p-3 text-center">
-                                    <img src="images/cases/case4.jpg" class="img-fluid rounded shadow-sm case-image" alt="Минус 6 см — до/после">
-                                </div>
-                                <div class="col-md-5 p-4">
-                                    <h4 class="mb-3">Результат: <span class="text-success">–6 см в области живота</span></h4>
-                                    <p><strong>Мужчина, 33 года.</strong></p>
-                                    <p>Вёл сидячий образ жизни, почти без физической активности.
-                                        Главная жалоба — увеличенный живот, который мешал чувствовать себя уверенно.
-                                        После курса –6 см в объёме, перестал втягивать живот, легко носит рубашки своего обычного размера и чувствует себя комфортно в теле.</p>
-                                    <hr>
-                                    <p class="text-muted small mb-0">📅 Срок курса: 10 сеансов , 1,5 месяца<br>💆 Тип работы: моделирование живота и стимуляция обмена веществ</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </section>
-
-            <!-- ====== ABOUT / TEAM SECTION ====== -->
-            <section class="about-section section-padding" id="section_2">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 col-12 mx-auto">
-                            <h2 class="mb-4">Почему нам можно доверять?</h2>
-                            <div class="border-bottom pb-3 mb-5">
-                                <p>Мы более 5 лет специализируемся на аппаратной коррекции фигуры и работаем именно с мужчинами. 95% клиентов получают выраженный результат. В студии только сертифицированные аппараты и опытные специалисты.</p>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12 col-12 mx-auto">
-                            <h2 class="mb-4">Почему наш метод работает?</h2>
-                            <div class="border-bottom pb-3 mb-5">
-                                <p>Аппараты воздействуют напрямую на жировые клетки и ускоряют обменные процессы. За счёт лимфодренажа жир и лишняя жидкость выводятся естественным образом. Это эффективно даже без спортзала и диет, поэтому результат виден уже после нескольких процедур.</p>
-                            </div>
-                        </div>
-
-                        <h6 class="mb-4">Наши мастера</h6>
-
-                        <!-- Карточки мастеров -->
-                        <div class="row g-4 justify-content-center">
-
-                            <!-- Руфина -->
-                            <div class="col-md-6 col-lg-5">
-                                <div class="custom-card">
-                                    <img src="images/barber/rufina.jpg" class="custom-card__img face-top-left" alt="Руфина">
-                                    <div class="team-info d-flex align-items-center">
-                                        <p class="mb-0">Руфина</p>
-                                        <ul class="social-icon ms-auto">
-                                            <li class="social-icon-item"><a href="#" class="social-icon-link bi-facebook"></a></li>
-                                            <li class="social-icon-item"><a href="#" class="social-icon-link bi-instagram" target="_blank"></a></li>
-                                            <li class="social-icon-item"><a href="#" class="social-icon-link bi-whatsapp"></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Надежда 1 -->
-                            <div class="col-md-6 col-lg-5">
-                                <div class="custom-card">
-                                    <img src="images/barber/master1.jpg" class="custom-card__img face-center" alt="Мастер">
-                                    <div class="team-info d-flex align-items-center">
-                                        <p class="mb-0">Надежда</p>
-                                        <ul class="social-icon ms-auto">
-                                            <li class="social-icon-item"><a href="#" class="social-icon-link bi-facebook"></a></li>
-                                            <li class="social-icon-item"><a href="#" class="social-icon-link bi-instagram" target="_blank"></a></li>
-                                            <li class="social-icon-item"><a href="#" class="social-icon-link bi-whatsapp"></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Русалина -->
-                            <div class="col-md-6 col-lg-5">
-                                <div class="custom-card">
-                                    <img src="images/barber/master2.jpg" class="custom-card__img face-left" alt="Мастер">
-                                    <div class="team-info d-flex align-items-center">
-                                        <p class="mb-0">Русалина</p>
-                                        <ul class="social-icon ms-auto">
-                                            <li class="social-icon-item"><a href="#" class="social-icon-link bi-facebook"></a></li>
-                                            <li class="social-icon-item"><a href="#" class="social-icon-link bi-instagram" target="_blank"></a></li>
-                                            <li class="social-icon-item"><a href="#" class="social-icon-link bi-whatsapp"></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Сара -->
-                            <div class="col-md-6 col-lg-5">
-                                <div class="custom-card">
-                                    <img src="images/barber/sara.jpg" class="custom-card__img face-right" alt="Сара">
-                                    <div class="team-info d-flex align-items-center">
-                                        <p class="mb-0">Сара</p>
-                                        <ul class="social-icon ms-auto">
-                                            <li class="social-icon-item"><a href="#" class="social-icon-link bi-facebook"></a></li>
-                                            <li class="social-icon-item"><a href="#" class="social-icon-link bi-instagram" target="_blank"></a></li>
-                                            <li class="social-icon-item"><a href="#" class="social-icon-link bi-whatsapp"></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Евгения -->
-<!--                            <div class="col-md-6 col-lg-5">-->
-<!--                                <div class="custom-card">-->
-<!--                                    <img src="images/barber/evgenia.jpg" class="custom-card__img face-top" alt="Евгения" style="object-position: 50% 40%;">-->
-<!--                                    <div class="team-info d-flex align-items-center">-->
-<!--                                        <p class="mb-0">Евгения</p>-->
-<!--                                        <ul class="social-icon ms-auto">-->
-<!--                                            <li class="social-icon-item"><a href="#" class="social-icon-link bi-facebook"></a></li>-->
-<!--                                            <li class="social-icon-item"><a href="#" class="social-icon-link bi-instagram" target="_blank"></a></li>-->
-<!--                                            <li class="social-icon-item"><a href="#" class="social-icon-link bi-whatsapp"></a></li>-->
-<!--                                        </ul>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-
-                        </div><!-- /row -->
-                    </div>
-                </div>
-            </section>
-
-
-            <!--            <section class="featured-section section-padding">-->
-<!--                <div class="section-overlay"></div>-->
-
-<!--                <div class="container">-->
-<!--                    <div class="row">-->
-
-<!--                        <div class="col-lg-10 col-12 mx-auto">-->
-<!--                            <h2 class="mb-3">Скидка 32%</h2>-->
-
-<!--                            <p>каждую вторую неделю месяца</p>-->
-
-<!--                            <strong>Промокод: AIURU</strong>-->
-<!--                        </div>-->
-
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </section>-->
-
-
-            <section class="services-section section-padding" id="section_3">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-12 col-12">
-                            <h2 class="mb-5">Услуги</h2>
-                        </div>
-
-                        <div class="col-lg-6 col-12 mb-4">
-                            <div class="services-thumb">
-                                <video class="services-image img-fluid" autoplay loop muted playsinline>
-                                    <source src="images/video/1.mp4" type="video/mp4">
-                                    Ваш браузер не поддерживает видео.
-                                </video>
-
-                                <div class="services-info d-flex align-items-end">
-                                    <h4 class="mb-0">Ультразвуковая кавитация</h4>
-                                    <strong class="services-thumb-price">350 тыс.</strong>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-12 mb-4">
-                            <div class="services-thumb">
-                                <video class="services-image img-fluid" style="object-position: center bottom" autoplay loop muted playsinline>
-                                    <source src="images/video/2.mp4" type="video/mp4">
-                                    Ваш браузер не поддерживает видео.
-                                </video>
-
-                                <div class="services-info d-flex align-items-end">
-                                    <h4 class="mb-0">Rf лифтинг</h4>
-                                    <strong class="services-thumb-price">250 тыс.</strong>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-12 mb-4">
-                            <div class="services-thumb">
-                                <video class="services-image img-fluid" style="object-position: center 75%" autoplay loop muted playsinline>
-                                    <source src="images/video/3.mp4" type="video/mp4">
-                                    Ваш браузер не поддерживает видео.
-                                </video>
-
-                                <div class="services-info d-flex align-items-end">
-                                    <h4 class="mb-0">Вакуумный массаж</h4>
-                                    <strong class="services-thumb-price">350 тыс / 175 тыс</strong>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-12 mb-4">
-                            <div class="services-thumb">
-                                <video class="services-image img-fluid" style="object-position: center 65%" autoplay loop muted playsinline>
-                                    <source src="images/video/4.mp4" type="video/mp4">
-                                    Ваш браузер не поддерживает видео.
-                                </video>
-
-                                <div class="services-info d-flex align-items-end">
-                                    <h4 class="mb-0">Вибромассаж - лимфодренаж</h4>
-                                    <strong class="services-thumb-price"> 250 тыс</strong>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-12 mb-4">
-                            <div class="services-thumb">
-                                <video class="services-image img-fluid" style="object-position: center center" autoplay loop muted playsinline>
-                                    <source src="images/video/5.mp4" type="video/mp4">
-                                    Ваш браузер не поддерживает видео.
-                                </video>
-
-                                <div class="services-info d-flex align-items-end">
-                                    <h4 class="mb-0">Миостимуляция</h4>
-                                    <strong class="services-thumb-price">350 тыс / 175 тыс</strong>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-12 mb-4">
-                            <div class="services-thumb">
-                                <video class="services-image img-fluid" style="object-position: center center" autoplay loop muted playsinline>
-                                    <source src="images/video/6.mp4" type="video/mp4">
-                                    Ваш браузер не поддерживает видео.
-                                </video>
-
-                                <div class="services-info d-flex align-items-end">
-                                    <h4 class="mb-0">Прессотерапия</h4>
-                                    <strong class="services-thumb-price">200 тыс</strong>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            <section class="price-list-section section-padding" id="section_4">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-8 col-12">
-                            <div class="price-list-thumb-wrap">
-                                <div class="mb-4">
-                                    <h2 class="mb-2">Цены</h2>
-                                    <strong>Стоимость указана в тыс.</strong>
-                                </div>
-                                <div class="mb-4">
-                                    <a href="https://t.me/Body_aesthetic_aiuru?text=Хочу%20записаться%20на%20бесплатную%20диагностику"
-                                       target="_blank"
-                                       class="btn-diagnostic">
-                                        <span class="pulse-dot"></span>
-                                        Подобрать курс на бесплатной диагностике
-                                    </a>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered text-center align-middle">
-                                        <thead class="table-light">
-                                        <tr>
-                                            <th>Услуга</th>
-                                            <th>1 сеанс</th>
-                                            <th>От 5 сеансов</th>
-                                            <th>От 10 сеансов</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td class="text-start">Ультразвуковая кавитация</td>
-                                            <td>350</td>
-                                            <td>300</td>
-                                            <td>250</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-start">RF лифтинг</td>
-                                            <td>250</td>
-                                            <td>200</td>
-                                            <td>150</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-start">Вибромассаж</td>
-                                            <td>350</td>
-                                            <td>300</td>
-                                            <td>250</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-start">Вакуумный массаж</td>
-                                            <td>350</td>
-                                            <td>300</td>
-                                            <td>250</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-start">Миостимуляция</td>
-                                            <td>250</td>
-                                            <td>200</td>
-                                            <td>150</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-start">Биофотон</td>
-                                            <td>250</td>
-                                            <td>200</td>
-                                            <td>150</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-start">Лазерный липолиз</td>
-                                            <td>250</td>
-                                            <td>200</td>
-                                            <td>150</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-start">Прессотерапия</td>
-                                            <td>200</td>
-                                            <td>150</td>
-                                            <td>100</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-start">Услуга бронирования (1 час)</td>
-                                            <td colspan="3">300</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-start">Костюм прессотерапии</td>
-                                            <td colspan="3">50</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-12 custom-block-bg-overlay-wrap mt-5 mb-5 mb-lg-0 mt-lg-0 pt-3 pt-lg-0">
-                            <img src="images/price.png" class="custom-block-bg-overlay-image img-fluid" alt="">
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-
-
-
-            <section class="contact-section" id="section_5">
-                <div class="section-padding section-bg">
-                    <div class="container">
-                        <div class="row">
-
-                            <div class="col-lg-8 col-12 mx-auto border-bottom pb-5 mb-5">
-                                <h3 class="text-center">Часто задаваемые вопросы:</h3>
-                            </div>
-
-                            <div class="col-lg-12 col-12 mx-auto">
-                                <h4 class="mb-4">Это больно?</h4>
-
-                                <div class="border-bottom pb-3 mb-5">
-                                    <p>Нет. Аппаратные методики комфортные, ощущаются как массаж. Многие даже засыпают во время сеанса.</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-12 mx-auto">
-                                <h4 class="mb-4">Через сколько видно изменения?</h4>
-
-                                <div class="border-bottom pb-3 mb-5">
-                                    <p>Уже после 2–3 процедур мужчина видит, что живот становится мягче и объём начинает уходить.</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-12 mx-auto">
-                                <h4 class="mb-4">Результат будет держаться или вернётся обратно?</h4>
-
-                                <div class="border-bottom pb-3 mb-5">
-                                    <p>Результат сохраняется надолго, если соблюдать простые рекомендации: пить воду, не злоупотреблять фастфудом и газировкой. Переодически посещать хотя бы лимфодренажные массажи.</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-12 mx-auto">
-                                <h4 class="mb-4">Сколько сеансов нужно, чтобы ушёл живот?</h4>
-
-                                <div class="border-bottom pb-3 mb-5">
-                                    <p>Минимальный курс — 6–8 сеансов, заметный результат уже после первых сеансов. Но для стойкого эффекта лучше взять полный курс.</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-12 mx-auto">
-                                <h4 class="mb-4">Безопасные ли процедуры?</h4>
-
-                                <div class="border-bottom pb-3 mb-5">
-                                    <p>Да. Все процедуры проходят на сертифицированных аппаратах, не повреждают кожу и не требуют реабилитации. Методика одобрена врачами, подходит большинству мужчин и имеет минимум противопоказаний.</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-12 mx-auto">
-                                <h4 class="mb-4">Есть ли гарантия результата?</h4>
-
-                                <div class=" pb-3 mb-5">
-                                    <p>Да. В 95% случаев мужчины получают заметный эффект: уменьшение объёмов живота и боков, подтянутую кожу и более спортивный вид. Мы сопровождаем клиента до результата и даём рекомендации для закрепления эффекта.</p>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12 col-12 mx-auto text-center mt-4">
-                                <p class="mb-3">Если остались вопросы — проще всего прийти на бесплатную диагностику.</p>
-                                <a href="https://t.me/Body_aesthetic_aiuru?text=Хочу%20записаться%20на%20бесплатную%20диагностику"
-                                   target="_blank"
-                                   class="btn-diagnostic btn-diagnostic-full">
-                                    <span class="pulse-dot"></span>
-                                    Записаться на бесплатную диагностику
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section-padding bg-light" id="section_reviews">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 col-12">
-                            <h2 class="mb-5">Отзывы клиентов</h2>
-                        </div>
-
-                        <!-- Отзыв 1 -->
-                        <div class="col-md-6 col-lg-6 mb-4">
-                            <div class="card h-100 shadow-sm border-0">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                        <i class="bi-chat-quote fs-4 me-2"></i>
-                                        <h5 class="mb-0">Результат за 1 месяц</h5>
-                                    </div>
-                                    <p class="mb-2 small text-muted">Мужчина, курс 1 месяц</p>
-                                    <blockquote class="mb-0">
-                                        Понравился результат за 1 месяц. Не ожидал такого результата, очень большие изменения.
-                                        В весе тоже есть изменения — <strong>–6&nbsp;кг</strong>. Все процедуры мне понравились, рад результату. Спасибо.
-                                    </blockquote>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Отзыв 2 (UZ) -->
-                        <div class="col-md-6 col-lg-6 mb-4">
-                            <div class="card h-100 shadow-sm border-0">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                        <i class="bi-chat-quote fs-4 me-2"></i>
-                                        <h5 class="mb-0">Assalomu alaykum</h5>
-                                    </div>
-                                    <p class="mb-2 small text-muted">Kursdan keyingi holat</p>
-                                    <blockquote class="mb-0">
-                                        AUIRA kompaniyasiga tashrif buyurib korreksiya kursi oldim.
-                                        Avval tez charchab, biroz yursam ham hansirardim, semizlik qiynardi.
-                                        Endi esa juda yaxshiman — <strong>bel ancha ketdi, vazn ham tushdi</strong>,
-                                        qomatim chiroyli bo‘ldi. Ishda ham, ko‘chada ham <strong>aktiv</strong> hayotga qaytdim.
-                                        Hammaga tavsiya qilaman. Aiura jamoasiga katta rahmat.
-                                    </blockquote>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Отзыв 3 -->
-                        <div class="col-md-6 col-lg-6 mb-4">
-                            <div class="card h-100 shadow-sm border-0">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                        <i class="bi-chat-quote fs-4 me-2"></i>
-                                        <h5 class="mb-0">Нашёл в Instagram — не пожалел</h5>
-                                    </div>
-                                    <p class="mb-2 small text-muted">Консультация → абонемент</p>
-                                    <blockquote class="mb-0">
-                                        В Инстаграме попался пост AIURU, зашёл на их страницу, посмотрел посты и решил получить консультацию.
-                                        Всё объяснили и показали. Я <strong>купил абонемент и не пожалел</strong> — всё на высоком уровне.
-                                        Обслуживающий персонал отлично знает свою работу. Мне очень понравилось и я рекомендую всем!
-                                    </blockquote>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Отзыв 4 (UZ, короткий) -->
-                        <div class="col-md-6 col-lg-6 mb-4">
-                            <div class="card h-100 shadow-sm border-0">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                        <i class="bi-chat-quote fs-4 me-2"></i>
-                                        <h5 class="mb-0">Zo‘r bo‘ldi!</h5>
-                                    </div>
-                                    <p class="mb-2 small text-muted">Qisqa fikr</p>
-                                    <blockquote class="mb-0">
-                                        Ha, rahmat kattakon. Zo‘r bo‘ldi. Menga judayam yoqdi.
-                                        Mualajalar <strong>ajoyib</strong>, ba’zida maroqli ham. Rahmat kattakon sizlarga.
-                                    </blockquote>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-
-            <section class="contact-section" id="section_6">
-                <div class="section-padding">
-                    <div class="container">
-                        <div class="row">
-
-                            <div class="col-lg-6 col-12">
-                                <h5 class="mb-3"><strong>Контакты</strong></h5>
-                                <a href="https://t.me/Body_aesthetic_aiuru?text=Хочу%20записаться%20на%20бесплатную%20диагностику"
-                                   target="_blank"
-                                   class="btn-diagnostic mb-3">
-                                    <span class="pulse-dot"></span>
-                                    Бесплатная диагностика в Telegram
-                                </a>
-
-                                <p class="text-white d-flex mb-1">
-                                    <a href="tel: 507181330" class="site-footer-link">
-                                        +998 (50) 718-13-30
-                                    </a>
-                                </p>
-
-                                <p class="text-white d-flex">
-                                    <a href="mailto:info@yourgmail.com" class="site-footer-link">
-                                        <!--                                        hello@barber.beauty-->
-                                    </a>
-                                </p>
-
-                                <ul class="social-icon">
-                                    <li class="social-icon-item">
-                                        <a href="https://t.me/Body_aesthetic_aiuru" target="_blank"
-                                           class="social-icon-link bi-telegram">
-                                        </a>
-                                    </li>
-
-                                    <!--                                        <li class="social-icon-item">-->
-                                    <!--                                            <a href="#" class="social-icon-link bi-twitter">-->
-                                    <!--                                            </a>-->
-                                    <!--                                        </li>-->
-
-                                    <li class="social-icon-item">
-                                        <a href="https://www.instagram.com/body_aesthetic_tashkent?igsh=MWVxdHhqem10bW9oZQ%3D%3D&utm_source=qr"
-                                           target="_blank" class="social-icon-link bi-instagram">
-                                        </a>
-                                    </li>
-
-                                    <!--                                        <li class="social-icon-item">-->
-                                    <!--                                            <a href="#" class="social-icon-link bi-youtube">-->
-                                    <!--                                            </a>-->
-                                    <!--                                        </li>-->
-
-                                    <!--                                        <li class="social-icon-item">-->
-                                    <!--                                            <a href="#" class="social-icon-link bi-whatsapp">-->
-                                    <!--                                            </a>-->
-                                    <!--                                        </li>-->
-                                </ul>
-                            </div>
-
-                            <div class="col-lg-5 col-12 contact-block-wrap mt-5 mt-lg-0 pt-4 pt-lg-0 mx-auto" id="contact2">
-                                <div class="contact-block">
-                                    <h6 class="mb-0">
-                                        <i class="custom-icon bi-shop me-3"></i>
-
-                                        <strong>Open Daily</strong>
-
-                                        <span class="ms-auto">10:00 AM - 8:00 PM</span>
-                                    </h6>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12 col-12 mx-auto mt-5 pt-5">
-                                <iframe class="google-map"
-                                        src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d5996.752054286488!2d69.299597!3d41.27892!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDE2JzQ0LjEiTiA2OcKwMTcnNTguNiJF!5e0!3m2!1sen!2slv!4v1758198200194!5m2!1sen!2slv"
-                                        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
-                                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <footer class="site-footer">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-12 col-12">
-                            <h4 class="site-footer-title mb-4">Наши филиалы</h4>
-                        </div>
-
-
-                        <div class="col-lg-4 col-md-6 col-11">
-                            <strong class="mb-1">Ташкент</strong>
-
-                            <p>Tashkent, Yangizamon 11</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="site-footer-bottom">
-                    <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-lg-8 col-12 mt-4">
-                                <p class="copyright-text mb-0">Copyright © 2025 AIURU
-                                    - Design</p>
-                            </div>
-                            <div class="col-lg-2 col-md-3 col-3 mt-lg-4 ms-auto">
-                                <a href="#section_1" class="back-top-icon smoothscroll" title="Back Top">
-                                    <i class="bi-arrow-up-circle"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+        <div class="relative w-full flex flex-col gap-3 items-center">
+            <a href="https://t.me/Body_aesthetic_aiuru" target="_blank"
+               class="w-full inline-flex items-center justify-center gap-2 py-3 rounded-full bg-gradient-to-r from-brand-500 to-brand-600 text-white text-sm font-medium hover:shadow-glow transition-all duration-300 hover:-translate-y-0.5">
+                <i class="bi-telegram"></i> Написать нам
+            </a>
+            <a href="tel:+998507181330" class="text-xs tracking-widest text-slate-400 hover:text-brand-300 transition-colors">
+                +998 (50) 718-13-30
+            </a>
         </div>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/click-scroll.js"></script>
-        <script src="js/custom.js"></script>
+    </aside>
 
+    <!-- Mobile drawer -->
+    <div id="mobileDrawer" class="md:hidden fixed inset-0 z-50 hidden">
+        <div class="drawer-backdrop absolute inset-0 bg-black/70 opacity-0 transition-opacity duration-300"></div>
+        <div class="drawer-panel absolute top-0 right-0 h-full w-[82%] max-w-sm bg-ink-950 border-l border-white/10 p-6 translate-x-full transition-transform duration-300 flex flex-col">
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center gap-2">
+                    <img src="images/logo2-removebg-preview.png" alt="AIURU" class="h-10 w-auto">
+                    <span class="font-display tracking-widest text-white">AIURU</span>
+                </div>
+                <button id="mobileMenuClose" aria-label="Закрыть"
+                        class="w-10 h-10 rounded-xl border border-white/10 text-white flex items-center justify-center">
+                    <i class="bi-x-lg"></i>
+                </button>
+            </div>
+            <nav class="flex-1">
+                <ul class="flex flex-col gap-1">
+                    <li><a class="nav-link click-scroll" href="#section_1">Главная</a></li>
+                    <li><a class="nav-link click-scroll" href="#section_cases">Кейсы</a></li>
+                    <li><a class="nav-link click-scroll" href="#section_2">О нас</a></li>
+                    <li><a class="nav-link click-scroll" href="#section_3">Услуги</a></li>
+                    <li><a class="nav-link click-scroll" href="#section_4">Цены</a></li>
+                    <li><a class="nav-link click-scroll" href="#section_5">Вопросы и ответы</a></li>
+                    <li><a class="nav-link click-scroll" href="#section_reviews">Отзывы</a></li>
+                    <li><a class="nav-link click-scroll" href="#section_6">Контакты</a></li>
+                </ul>
+            </nav>
+            <a href="https://t.me/Body_aesthetic_aiuru" target="_blank"
+               class="inline-flex items-center justify-center gap-2 py-3 rounded-full bg-gradient-to-r from-brand-500 to-brand-600 text-white font-medium">
+                <i class="bi-telegram"></i> Написать в Telegram
+            </a>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <main class="w-full max-w-full min-w-0 md:flex-1 md:ml-[300px] lg:ml-[320px] pt-[64px] md:pt-0 overflow-x-clip">
+
+        <!-- HERO -->
+        <section id="section_1" class="hero relative overflow-hidden w-full max-w-full md:min-h-[92vh] md:flex md:items-end">
+            <!-- Background layers -->
+            <div class="absolute inset-0">
+                <img src="images/hero.jpg" alt="" class="w-full h-full object-cover object-center scale-105 hero-bg-img">
+                <div class="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/80 to-transparent"></div>
+                <div class="absolute inset-0 bg-mesh-hero opacity-90 mix-blend-multiply"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(6,182,212,0.25),transparent_60%)]"></div>
+            </div>
+
+            <!-- Decorative grid -->
+            <div class="absolute inset-0 opacity-[0.07] bg-[linear-gradient(rgba(255,255,255,0.6)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.6)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
+
+            <div class="relative z-10 w-full max-w-full px-5 sm:px-6 md:px-12 lg:px-16 pt-10 md:pt-10 lg:pt-10 pb-10 md:pb-14">
+                <div class="max-w-4xl" data-reveal>
+                    <span class="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-gold-400/30 bg-gold-400/5 text-gold-300 text-[10px] md:text-xs tracking-[0.2em] md:tracking-[0.3em] uppercase mb-5 md:mb-8">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse"></span>
+                        Студия коррекции · Tashkent
+                    </span>
+
+                    <h1 class="font-display font-bold text-white text-[clamp(1.5rem,3.2vw,3rem)] leading-[1.2] md:leading-[1.1] tracking-tight mb-5 md:mb-6 break-words">
+                        <span class="block">Убираем <span class="text-gradient-gold italic">живот и бока</span></span>
+                        <span class="block">без спортзала</span>
+                        <span class="block">и <span class="text-gradient-brand italic">диет</span></span>
+                    </h1>
+
+                    <p class="text-base md:text-xl text-slate-300 max-w-xl mb-7 md:mb-10 leading-relaxed">
+                        Аппаратная коррекция фигуры для мужчин. Более 5 лет опыта.
+                        95% клиентов получают заметный результат уже после первых сеансов.
+                    </p>
+
+                    <div class="flex flex-wrap gap-3 md:gap-4">
+                        <a href="https://t.me/Body_aesthetic_aiuru?text=Хочу%20записаться%20на%20бесплатную%20диагностику"
+                           target="_blank"
+                           class="btn-diagnostic group w-full sm:w-auto justify-center">
+                            <span class="pulse-dot"></span>
+                            <span>Бесплатная диагностика</span>
+                            <i class="bi-arrow-right-short text-2xl transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                        <a href="#section_3" class="smoothscroll btn-ghost w-full sm:w-auto justify-center">
+                            <i class="bi-play-circle"></i>
+                            Что мы делаем
+                        </a>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-3 md:gap-8 mt-9 md:mt-14 max-w-2xl">
+                        <div class="stat-item">
+                            <div class="stat-num" data-count="5">0</div>
+                            <div class="stat-label">лет опыта</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-num"><span data-count="95">0</span>%</div>
+                            <div class="stat-label">результат</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-num"><span data-count="10">0</span>+</div>
+                            <div class="stat-label">методик</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- scroll hint -->
+            <a href="#section_cases" class="smoothscroll absolute bottom-6 left-1/2 -translate-x-1/2 z-10 text-slate-400 hover:text-white transition-colors hidden md:flex flex-col items-center gap-2">
+                <span class="text-[10px] tracking-[0.4em] uppercase">Scroll</span>
+                <span class="w-px h-10 bg-gradient-to-b from-slate-400 to-transparent animate-pulse"></span>
+            </a>
+        </section>
+
+        <!-- CASES -->
+        <section id="section_cases" class="section relative">
+            <div class="absolute inset-0 pointer-events-none bg-radial-fade"></div>
+            <div class="container relative">
+                <header class="mb-14" data-reveal>
+                    <div class="eyebrow">Результаты</div>
+                    <h2 class="section-title">Кейсы наших клиентов</h2>
+                    <p class="section-lead">
+                        После бесплатной диагностики специалист подберёт курс именно под вас.
+                    </p>
+                </header>
+
+                <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+
+                    <!-- Case 1 -->
+                    <article class="case-card" data-reveal data-case-open="1">
+                        <div class="case-card__media">
+                            <img src="images/cases/case1.jpg" alt="Минус 5 см — до/после">
+                            <span class="case-card__badge">−5 см</span>
+                        </div>
+                        <div class="case-card__body">
+                            <h3>−5 см в талии</h3>
+                            <p class="case-card__meta">Мужчина, 26 лет · 1,5 месяца · 8 сеансов</p>
+                            <p class="case-card__text">
+                                Ударные процедуры на живот и бока плюс лимфодренаж.
+                                Стоимость <b class="text-gold-400">3 375 000 сум</b>
+                                <span class="line-through opacity-60">6 475 000 сум</span>.
+                            </p>
+                            <button class="case-card__btn">
+                                Смотреть подробнее
+                                <i class="bi-arrow-right-short"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Case 2 -->
+                    <article class="case-card" data-reveal data-case-open="2">
+                        <div class="case-card__media">
+                            <img src="images/cases/case2.jpg" alt="Минус 5 см в животе — до/после">
+                            <span class="case-card__badge">−5 см</span>
+                        </div>
+                        <div class="case-card__body">
+                            <h3>−5 см в животе</h3>
+                            <p class="case-card__meta">Мужчина, 36 лет · спортсмен</p>
+                            <p class="case-card__text">
+                                Занимается спортом, но локально не уходил живот. После курса минус 5 см в объёме.
+                                Стоимость <b class="text-gold-400">1 750 000 сум</b>.
+                            </p>
+                            <button class="case-card__btn">
+                                Смотреть подробнее
+                                <i class="bi-arrow-right-short"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Case 3 -->
+                    <article class="case-card" data-reveal data-case-open="3">
+                        <div class="case-card__media">
+                            <img src="images/cases/case3.jpg" alt="Минус 10 см в животе — до/после">
+                            <span class="case-card__badge">−10 см</span>
+                        </div>
+                        <div class="case-card__body">
+                            <h3>−10 см в животе</h3>
+                            <p class="case-card__meta">Мужчина, 35 лет · 17 сеансов · 2,5 месяца</p>
+                            <p class="case-card__text">
+                                Выгодный тариф — результат до −15 см и 1–1,5 года сохраняется!
+                                Стоимость <b class="text-gold-400">11 850 000 сум</b>
+                                <span class="line-through opacity-60">17 250 000 сум</span>.
+                            </p>
+                            <button class="case-card__btn">
+                                Смотреть подробнее
+                                <i class="bi-arrow-right-short"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Case 4 -->
+                    <article class="case-card" data-reveal data-case-open="4">
+                        <div class="case-card__media">
+                            <img src="images/cases/case4.jpg" alt="Минус 6 см в животе — до/после">
+                            <span class="case-card__badge">−6 см</span>
+                        </div>
+                        <div class="case-card__body">
+                            <h3>−6 см в животе</h3>
+                            <p class="case-card__meta">Мужчина, 33 года · 8 сеансов · 1,5 месяца</p>
+                            <p class="case-card__text">
+                                Стоимость абонемента <b class="text-gold-400">3 375 000 сум</b>
+                                <span class="line-through opacity-60">6 475 000 сум</span>.
+                            </p>
+                            <button class="case-card__btn">
+                                Смотреть подробнее
+                                <i class="bi-arrow-right-short"></i>
+                            </button>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="mt-12 flex justify-center" data-reveal>
+                    <a href="https://t.me/Body_aesthetic_aiuru?text=Хочу%20бесплатную%20диагностику%20после%20просмотра%20кейсов"
+                       target="_blank"
+                       class="btn-diagnostic">
+                        <span class="pulse-dot"></span>
+                        Записаться на бесплатную диагностику
+                        <i class="bi-arrow-right-short text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Case Modals -->
+            <div class="case-modal" id="caseModal1">
+                <div class="case-modal__backdrop"></div>
+                <div class="case-modal__box">
+                    <button class="case-modal__close" aria-label="Закрыть"><i class="bi-x-lg"></i></button>
+                    <div class="grid md:grid-cols-[1.2fr_1fr]">
+                        <div class="p-3 md:p-5">
+                            <img src="images/cases/case1.jpg" class="w-full rounded-2xl shadow-sink" alt="–5 см в талии">
+                        </div>
+                        <div class="p-6 md:p-8 flex flex-col justify-center">
+                            <span class="eyebrow">Результат</span>
+                            <h3 class="text-3xl font-display font-bold text-white mb-3">−5 см в талии</h3>
+                            <p class="text-slate-300 mb-4"><strong class="text-white">Мужчина, 26 лет.</strong></p>
+                            <p class="text-slate-300 mb-6 leading-relaxed">Похудел сам на 7 кг, но кожа не подтянулась. Запрос — максимально подтянуть кожу и уменьшить объём на 5 см. После курса над ремнём больше не образуется складка, талия стала подтянутой и визуально стройнее.</p>
+                            <div class="divider"></div>
+                            <p class="text-sm text-slate-400 mt-4">Курс: 10 сеансов · 1,5 месяца<br>Тип работы: аппаратное моделирование тела</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-modal" id="caseModal2">
+                <div class="case-modal__backdrop"></div>
+                <div class="case-modal__box">
+                    <button class="case-modal__close" aria-label="Закрыть"><i class="bi-x-lg"></i></button>
+                    <div class="grid md:grid-cols-[1.2fr_1fr]">
+                        <div class="p-3 md:p-5">
+                            <img src="images/cases/case2.jpg" class="w-full rounded-2xl shadow-sink" alt="–5 см в области живота">
+                        </div>
+                        <div class="p-6 md:p-8 flex flex-col justify-center">
+                            <span class="eyebrow">Результат</span>
+                            <h3 class="text-3xl font-display font-bold text-white mb-3">−5 см в области живота</h3>
+                            <p class="text-slate-300 mb-4"><strong class="text-white">Мужчина, 36 лет.</strong></p>
+                            <p class="text-slate-300 mb-6 leading-relaxed">Регулярно занимается спортом, но локально не уходил живот. Не нравился объём в зоне пресса — хотел увидеть свои «кубики». После курса −5 см в объёме. Теперь чаще ездит в тёплые страны отдыхать.</p>
+                            <div class="divider"></div>
+                            <p class="text-sm text-slate-400 mt-4">Курс: 6 сеансов · 1 месяц<br>Тип работы: коррекция тела и локальных жировых отложений</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-modal" id="caseModal3">
+                <div class="case-modal__backdrop"></div>
+                <div class="case-modal__box">
+                    <button class="case-modal__close" aria-label="Закрыть"><i class="bi-x-lg"></i></button>
+                    <div class="grid md:grid-cols-[1.2fr_1fr]">
+                        <div class="p-3 md:p-5">
+                            <img src="images/cases/case3.jpg" class="w-full rounded-2xl shadow-sink" alt="–10 см в области живота">
+                        </div>
+                        <div class="p-6 md:p-8 flex flex-col justify-center">
+                            <span class="eyebrow">Результат</span>
+                            <h3 class="text-3xl font-display font-bold text-white mb-3">−10 см в области живота</h3>
+                            <p class="text-slate-300 mb-4"><strong class="text-white">Мужчина, 35 лет, госслужащий.</strong></p>
+                            <p class="text-slate-300 mb-6 leading-relaxed">Выраженный объём живота создавал дискомфорт в обычной жизни. Из-за плотного графика не удавалось заниматься спортом и соблюдать питание. После курса −10 см в объёме, улучшился сон и значительно снизилась одышка.</p>
+                            <div class="divider"></div>
+                            <p class="text-sm text-slate-400 mt-4">Курс: 17 сеансов · 2,5 месяца<br>Тип работы: глубокое аппаратное воздействие на зону живота</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-modal" id="caseModal4">
+                <div class="case-modal__backdrop"></div>
+                <div class="case-modal__box">
+                    <button class="case-modal__close" aria-label="Закрыть"><i class="bi-x-lg"></i></button>
+                    <div class="grid md:grid-cols-[1.2fr_1fr]">
+                        <div class="p-3 md:p-5">
+                            <img src="images/cases/case4.jpg" class="w-full rounded-2xl shadow-sink" alt="–6 см в области живота">
+                        </div>
+                        <div class="p-6 md:p-8 flex flex-col justify-center">
+                            <span class="eyebrow">Результат</span>
+                            <h3 class="text-3xl font-display font-bold text-white mb-3">−6 см в области живота</h3>
+                            <p class="text-slate-300 mb-4"><strong class="text-white">Мужчина, 33 года.</strong></p>
+                            <p class="text-slate-300 mb-6 leading-relaxed">Вёл сидячий образ жизни, почти без физической активности. Главная жалоба — увеличенный живот, который мешал чувствовать себя уверенно. После курса −6 см в объёме, легко носит рубашки своего обычного размера.</p>
+                            <div class="divider"></div>
+                            <p class="text-sm text-slate-400 mt-4">Курс: 10 сеансов · 1,5 месяца<br>Тип работы: моделирование живота и стимуляция обмена веществ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="section_2" class="section bg-ink-950 relative overflow-hidden">
+            <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_0%_0%,rgba(6,182,212,0.12),transparent_50%),radial-gradient(circle_at_100%_100%,rgba(212,165,116,0.1),transparent_50%)]"></div>
+
+            <div class="container relative">
+                <header class="mb-14" data-reveal>
+                    <div class="eyebrow">О студии</div>
+                    <h2 class="section-title">Почему нам можно доверять?</h2>
+                </header>
+
+                <div class="grid lg:grid-cols-2 gap-6 lg:gap-10 mb-16">
+                    <article class="glass-card p-8 md:p-10" data-reveal>
+                        <div class="icon-badge"><i class="bi-award"></i></div>
+                        <h3 class="text-2xl font-display font-semibold text-white mb-4">5+ лет опыта с мужчинами</h3>
+                        <p class="text-slate-300 leading-relaxed">
+                            Мы специализируемся именно на мужской аппаратной коррекции фигуры.
+                            95% клиентов получают выраженный результат. Только сертифицированные
+                            аппараты и опытные специалисты.
+                        </p>
+                    </article>
+
+                    <article class="glass-card p-8 md:p-10" data-reveal>
+                        <div class="icon-badge icon-badge--gold"><i class="bi-lightning-charge"></i></div>
+                        <h3 class="text-2xl font-display font-semibold text-white mb-4">Почему наш метод работает?</h3>
+                        <p class="text-slate-300 leading-relaxed">
+                            Аппараты воздействуют напрямую на жировые клетки и ускоряют обмен.
+                            Лимфодренаж выводит жир и лишнюю жидкость естественным образом.
+                            Это работает без спортзала и диет — результат виден уже после
+                            нескольких процедур.
+                        </p>
+                    </article>
+                </div>
+
+                <header class="mb-10" data-reveal>
+                    <div class="eyebrow">Команда</div>
+                    <h3 class="text-3xl md:text-4xl font-display font-bold text-white">Наши мастера</h3>
+                </header>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <figure class="master-card" data-reveal>
+                        <img src="images/barber/rufina.jpg" alt="Руфина" class="master-card__img" style="object-position: 25% 20%;">
+                        <figcaption class="master-card__caption">
+                            <div>
+                                <div class="master-card__name">Руфина</div>
+                                <div class="master-card__role">Специалист</div>
+                            </div>
+                            <ul class="master-card__social">
+                                <li><a href="#" aria-label="Instagram"><i class="bi-instagram"></i></a></li>
+                                <li><a href="#" aria-label="Whatsapp"><i class="bi-whatsapp"></i></a></li>
+                            </ul>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="master-card" data-reveal>
+                        <img src="images/barber/master1.jpg" alt="Надежда" class="master-card__img" style="object-position: 50% 35%;">
+                        <figcaption class="master-card__caption">
+                            <div>
+                                <div class="master-card__name">Надежда</div>
+                                <div class="master-card__role">Специалист</div>
+                            </div>
+                            <ul class="master-card__social">
+                                <li><a href="#" aria-label="Instagram"><i class="bi-instagram"></i></a></li>
+                                <li><a href="#" aria-label="Whatsapp"><i class="bi-whatsapp"></i></a></li>
+                            </ul>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="master-card" data-reveal>
+                        <img src="images/barber/master2.jpg" alt="Русалина" class="master-card__img" style="object-position: 30% 30%;">
+                        <figcaption class="master-card__caption">
+                            <div>
+                                <div class="master-card__name">Русалина</div>
+                                <div class="master-card__role">Специалист</div>
+                            </div>
+                            <ul class="master-card__social">
+                                <li><a href="#" aria-label="Instagram"><i class="bi-instagram"></i></a></li>
+                                <li><a href="#" aria-label="Whatsapp"><i class="bi-whatsapp"></i></a></li>
+                            </ul>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="master-card" data-reveal>
+                        <img src="images/barber/sara.jpg" alt="Сара" class="master-card__img" style="object-position: 65% 30%;">
+                        <figcaption class="master-card__caption">
+                            <div>
+                                <div class="master-card__name">Сара</div>
+                                <div class="master-card__role">Специалист</div>
+                            </div>
+                            <ul class="master-card__social">
+                                <li><a href="#" aria-label="Instagram"><i class="bi-instagram"></i></a></li>
+                                <li><a href="#" aria-label="Whatsapp"><i class="bi-whatsapp"></i></a></li>
+                            </ul>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section id="section_3" class="section relative">
+            <div class="absolute inset-0 pointer-events-none bg-radial-fade"></div>
+            <div class="container relative">
+                <header class="mb-14" data-reveal>
+                    <div class="eyebrow">Что мы делаем</div>
+                    <h2 class="section-title">Услуги студии</h2>
+                    <p class="section-lead">Современные аппаратные методики для мужской коррекции фигуры.</p>
+                </header>
+
+                <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+
+                    <article class="service-card" data-reveal>
+                        <video class="service-card__media" autoplay loop muted playsinline>
+                            <source src="images/video/1.mp4" type="video/mp4">
+                        </video>
+                        <div class="service-card__overlay"></div>
+                        <div class="service-card__body">
+                            <div>
+                                <span class="service-card__tag">01</span>
+                                <h3>Ультразвуковая кавитация</h3>
+                            </div>
+                            <div class="service-card__price">от 250 тыс.</div>
+                        </div>
+                    </article>
+
+                    <article class="service-card" data-reveal>
+                        <video class="service-card__media" autoplay loop muted playsinline style="object-position: center bottom">
+                            <source src="images/video/2.mp4" type="video/mp4">
+                        </video>
+                        <div class="service-card__overlay"></div>
+                        <div class="service-card__body">
+                            <div>
+                                <span class="service-card__tag">02</span>
+                                <h3>RF лифтинг</h3>
+                            </div>
+                            <div class="service-card__price">от 150 тыс.</div>
+                        </div>
+                    </article>
+
+                    <article class="service-card" data-reveal>
+                        <video class="service-card__media" autoplay loop muted playsinline style="object-position: center 75%">
+                            <source src="images/video/3.mp4" type="video/mp4">
+                        </video>
+                        <div class="service-card__overlay"></div>
+                        <div class="service-card__body">
+                            <div>
+                                <span class="service-card__tag">03</span>
+                                <h3>Вакуумный массаж</h3>
+                            </div>
+                            <div class="service-card__price">от 175 тыс.</div>
+                        </div>
+                    </article>
+
+                    <article class="service-card" data-reveal>
+                        <video class="service-card__media" autoplay loop muted playsinline style="object-position: center 65%">
+                            <source src="images/video/4.mp4" type="video/mp4">
+                        </video>
+                        <div class="service-card__overlay"></div>
+                        <div class="service-card__body">
+                            <div>
+                                <span class="service-card__tag">04</span>
+                                <h3>Вибромассаж — лимфодренаж</h3>
+                            </div>
+                            <div class="service-card__price">от 250 тыс.</div>
+                        </div>
+                    </article>
+
+                    <article class="service-card" data-reveal>
+                        <video class="service-card__media" autoplay loop muted playsinline>
+                            <source src="images/video/5.mp4" type="video/mp4">
+                        </video>
+                        <div class="service-card__overlay"></div>
+                        <div class="service-card__body">
+                            <div>
+                                <span class="service-card__tag">05</span>
+                                <h3>Миостимуляция</h3>
+                            </div>
+                            <div class="service-card__price">от 175 тыс.</div>
+                        </div>
+                    </article>
+
+                    <article class="service-card" data-reveal>
+                        <video class="service-card__media" autoplay loop muted playsinline>
+                            <source src="images/video/6.mp4" type="video/mp4">
+                        </video>
+                        <div class="service-card__overlay"></div>
+                        <div class="service-card__body">
+                            <div>
+                                <span class="service-card__tag">06</span>
+                                <h3>Прессотерапия</h3>
+                            </div>
+                            <div class="service-card__price">от 100 тыс.</div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICES -->
+        <section id="section_4" class="section bg-ink-950 relative overflow-hidden">
+            <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top_right,rgba(212,165,116,0.12),transparent_55%)]"></div>
+            <div class="container relative">
+                <div class="grid lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-14 items-start">
+                    <div data-reveal>
+                        <header class="mb-10">
+                            <div class="eyebrow">Прайс</div>
+                            <h2 class="section-title">Цены</h2>
+                            <p class="section-lead">Стоимость указана в тыс. сум. Финальный курс подбирается на диагностике.</p>
+                        </header>
+
+                        <a href="https://t.me/Body_aesthetic_aiuru?text=Хочу%20записаться%20на%20бесплатную%20диагностику"
+                           target="_blank"
+                           class="btn-diagnostic mb-8">
+                            <span class="pulse-dot"></span>
+                            Подобрать курс на бесплатной диагностике
+                            <i class="bi-arrow-right-short text-2xl"></i>
+                        </a>
+
+                        <div class="price-table-wrap">
+                            <table class="price-table">
+                                <thead>
+                                <tr>
+                                    <th class="text-left">Услуга</th>
+                                    <th>1 сеанс</th>
+                                    <th>от 5 сеансов</th>
+                                    <th>от 10 сеансов</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr><td class="text-left">Ультразвуковая кавитация</td><td>350</td><td>300</td><td class="price-best">250</td></tr>
+                                <tr><td class="text-left">RF лифтинг</td><td>250</td><td>200</td><td class="price-best">150</td></tr>
+                                <tr><td class="text-left">Вибромассаж</td><td>350</td><td>300</td><td class="price-best">250</td></tr>
+                                <tr><td class="text-left">Вакуумный массаж</td><td>350</td><td>300</td><td class="price-best">250</td></tr>
+                                <tr><td class="text-left">Миостимуляция</td><td>250</td><td>200</td><td class="price-best">150</td></tr>
+                                <tr><td class="text-left">Биофотон</td><td>250</td><td>200</td><td class="price-best">150</td></tr>
+                                <tr><td class="text-left">Лазерный липолиз</td><td>250</td><td>200</td><td class="price-best">150</td></tr>
+                                <tr><td class="text-left">Прессотерапия</td><td>200</td><td>150</td><td class="price-best">100</td></tr>
+                                <tr><td class="text-left">Услуга бронирования (1 час)</td><td colspan="3" class="text-center">300</td></tr>
+                                <tr><td class="text-left">Костюм прессотерапии</td><td colspan="3" class="text-center">50</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <aside class="price-side" data-reveal>
+                        <div class="price-side__inner">
+                            <div class="price-side__tag">Бонус диагностики</div>
+                            <h3 class="price-side__title">Первая консультация — <span class="text-gold-400">бесплатно</span></h3>
+                            <ul class="price-side__list">
+                                <li><i class="bi-check2-circle"></i> Индивидуальный план курса</li>
+                                <li><i class="bi-check2-circle"></i> Замеры и анализ</li>
+                                <li><i class="bi-check2-circle"></i> Подбор аппаратов</li>
+                                <li><i class="bi-check2-circle"></i> Расчёт точной стоимости</li>
+                            </ul>
+                            <img src="images/price.png" alt="" class="price-side__img">
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="section_5" class="section relative">
+            <div class="absolute inset-0 pointer-events-none bg-radial-fade"></div>
+            <div class="container relative max-w-4xl">
+                <header class="mb-12 text-center" data-reveal>
+                    <div class="eyebrow justify-center">FAQ</div>
+                    <h2 class="section-title">Часто задаваемые вопросы</h2>
+                </header>
+
+                <div class="space-y-3" data-reveal>
+                    <details class="faq-item">
+                        <summary>
+                            <span>Это больно?</span>
+                            <i class="bi-plus-lg faq-item__icon"></i>
+                        </summary>
+                        <div class="faq-item__body">
+                            <p>Нет. Аппаратные методики комфортные, ощущаются как массаж. Многие даже засыпают во время сеанса.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>
+                            <span>Через сколько видно изменения?</span>
+                            <i class="bi-plus-lg faq-item__icon"></i>
+                        </summary>
+                        <div class="faq-item__body">
+                            <p>Уже после 2–3 процедур мужчина видит, что живот становится мягче и объём начинает уходить.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>
+                            <span>Результат будет держаться или вернётся обратно?</span>
+                            <i class="bi-plus-lg faq-item__icon"></i>
+                        </summary>
+                        <div class="faq-item__body">
+                            <p>Результат сохраняется надолго, если соблюдать простые рекомендации: пить воду, не злоупотреблять фастфудом и газировкой. Периодически посещать хотя бы лимфодренажные массажи.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>
+                            <span>Сколько сеансов нужно, чтобы ушёл живот?</span>
+                            <i class="bi-plus-lg faq-item__icon"></i>
+                        </summary>
+                        <div class="faq-item__body">
+                            <p>Минимальный курс — 6–8 сеансов, заметный результат уже после первых сеансов. Но для стойкого эффекта лучше взять полный курс.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>
+                            <span>Безопасные ли процедуры?</span>
+                            <i class="bi-plus-lg faq-item__icon"></i>
+                        </summary>
+                        <div class="faq-item__body">
+                            <p>Да. Все процедуры проходят на сертифицированных аппаратах, не повреждают кожу и не требуют реабилитации. Методика одобрена врачами, подходит большинству мужчин и имеет минимум противопоказаний.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>
+                            <span>Есть ли гарантия результата?</span>
+                            <i class="bi-plus-lg faq-item__icon"></i>
+                        </summary>
+                        <div class="faq-item__body">
+                            <p>Да. В 95% случаев мужчины получают заметный эффект: уменьшение объёмов живота и боков, подтянутую кожу и более спортивный вид. Мы сопровождаем клиента до результата и даём рекомендации для закрепления эффекта.</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="mt-12 text-center" data-reveal>
+                    <p class="text-slate-300 mb-5">Если остались вопросы — проще всего прийти на бесплатную диагностику.</p>
+                    <a href="https://t.me/Body_aesthetic_aiuru?text=Хочу%20записаться%20на%20бесплатную%20диагностику"
+                       target="_blank"
+                       class="btn-diagnostic">
+                        <span class="pulse-dot"></span>
+                        Записаться на бесплатную диагностику
+                        <i class="bi-arrow-right-short text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS -->
+        <section id="section_reviews" class="section bg-ink-950 relative overflow-hidden">
+            <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_100%_0%,rgba(6,182,212,0.12),transparent_55%),radial-gradient(circle_at_0%_100%,rgba(212,165,116,0.1),transparent_55%)]"></div>
+            <div class="container relative">
+                <header class="mb-14" data-reveal>
+                    <div class="eyebrow">Клиенты о нас</div>
+                    <h2 class="section-title">Отзывы</h2>
+                </header>
+
+                <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+                    <article class="review-card" data-reveal>
+                        <i class="bi-quote review-card__quote"></i>
+                        <h3 class="review-card__title">Результат за 1 месяц</h3>
+                        <p class="review-card__meta">Мужчина · курс 1 месяц</p>
+                        <blockquote class="review-card__text">
+                            Понравился результат за 1 месяц. Не ожидал такого — очень большие изменения.
+                            В весе тоже есть изменения — <strong class="text-gold-400">−6 кг</strong>. Все процедуры понравились, рад результату. Спасибо.
+                        </blockquote>
+                        <div class="review-card__stars">
+                            <i class="bi-star-fill"></i><i class="bi-star-fill"></i><i class="bi-star-fill"></i><i class="bi-star-fill"></i><i class="bi-star-fill"></i>
+                        </div>
+                    </article>
+
+                    <article class="review-card" data-reveal>
+                        <i class="bi-quote review-card__quote"></i>
+                        <h3 class="review-card__title">Assalomu alaykum</h3>
+                        <p class="review-card__meta">Kursdan keyingi holat</p>
+                        <blockquote class="review-card__text">
+                            AUIRA kompaniyasiga tashrif buyurib korreksiya kursi oldim. Avval tez charchab, biroz yursam ham hansirardim, semizlik qiynardi. Endi esa juda yaxshiman — <strong class="text-gold-400">bel ancha ketdi, vazn ham tushdi</strong>, qomatim chiroyli bo'ldi. Aiura jamoasiga katta rahmat.
+                        </blockquote>
+                        <div class="review-card__stars">
+                            <i class="bi-star-fill"></i><i class="bi-star-fill"></i><i class="bi-star-fill"></i><i class="bi-star-fill"></i><i class="bi-star-fill"></i>
+                        </div>
+                    </article>
+
+                    <article class="review-card" data-reveal>
+                        <i class="bi-quote review-card__quote"></i>
+                        <h3 class="review-card__title">Нашёл в Instagram — не пожалел</h3>
+                        <p class="review-card__meta">Консультация → абонемент</p>
+                        <blockquote class="review-card__text">
+                            В Инстаграме попался пост AIURU. Зашёл на страницу, посмотрел посты и решил получить консультацию. Всё объяснили и показали. <strong class="text-gold-400">Купил абонемент и не пожалел</strong> — всё на высоком уровне. Рекомендую всем!
+                        </blockquote>
+                        <div class="review-card__stars">
+                            <i class="bi-star-fill"></i><i class="bi-star-fill"></i><i class="bi-star-fill"></i><i class="bi-star-fill"></i><i class="bi-star-fill"></i>
+                        </div>
+                    </article>
+
+                    <article class="review-card" data-reveal>
+                        <i class="bi-quote review-card__quote"></i>
+                        <h3 class="review-card__title">Zo'r bo'ldi!</h3>
+                        <p class="review-card__meta">Qisqa fikr</p>
+                        <blockquote class="review-card__text">
+                            Ha, rahmat kattakon. Zo'r bo'ldi. Menga judayam yoqdi.
+                            Mualajalar <strong class="text-gold-400">ajoyib</strong>, ba'zida maroqli ham. Rahmat kattakon sizlarga.
+                        </blockquote>
+                        <div class="review-card__stars">
+                            <i class="bi-star-fill"></i><i class="bi-star-fill"></i><i class="bi-star-fill"></i><i class="bi-star-fill"></i><i class="bi-star-fill"></i>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACTS -->
+        <section id="section_6" class="section relative overflow-hidden">
+            <div class="absolute inset-0 pointer-events-none bg-radial-fade"></div>
+            <div class="container relative">
+                <header class="mb-12" data-reveal>
+                    <div class="eyebrow">Связаться с нами</div>
+                    <h2 class="section-title">Контакты</h2>
+                </header>
+
+                <div class="grid lg:grid-cols-2 gap-6 lg:gap-10 mb-10">
+                    <div class="glass-card p-8 md:p-10 flex flex-col gap-6" data-reveal>
+                        <a href="https://t.me/Body_aesthetic_aiuru?text=Хочу%20записаться%20на%20бесплатную%20диагностику"
+                           target="_blank"
+                           class="btn-diagnostic self-start">
+                            <span class="pulse-dot"></span>
+                            Бесплатная диагностика в Telegram
+                            <i class="bi-arrow-right-short text-2xl"></i>
+                        </a>
+
+                        <div>
+                            <div class="text-xs tracking-[0.3em] uppercase text-slate-400 mb-2">Телефон</div>
+                            <a href="tel:+998507181330" class="text-2xl md:text-3xl font-display font-semibold text-white hover:text-brand-300 transition-colors">
+                                +998 (50) 718-13-30
+                            </a>
+                        </div>
+
+                        <div>
+                            <div class="text-xs tracking-[0.3em] uppercase text-slate-400 mb-2">Социальные сети</div>
+                            <ul class="flex gap-3">
+                                <li><a href="https://t.me/Body_aesthetic_aiuru" target="_blank" aria-label="Telegram" class="social-chip"><i class="bi-telegram"></i></a></li>
+                                <li><a href="https://www.instagram.com/body_aesthetic_tashkent?igsh=MWVxdHhqem10bW9oZQ%3D%3D&utm_source=qr" target="_blank" aria-label="Instagram" class="social-chip"><i class="bi-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-8 md:p-10 flex flex-col justify-center" data-reveal>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="icon-badge icon-badge--gold"><i class="bi-shop"></i></div>
+                            <div>
+                                <div class="text-white font-display font-semibold text-lg">Open Daily</div>
+                                <div class="text-slate-400 text-sm">Работаем без выходных</div>
+                            </div>
+                        </div>
+                        <div class="text-4xl md:text-5xl font-display font-bold text-gradient-brand">10:00 — 20:00</div>
+                        <div class="mt-6 pt-6 border-t border-white/5">
+                            <div class="text-xs tracking-[0.3em] uppercase text-slate-400 mb-2">Адрес</div>
+                            <div class="text-white text-lg">Ташкент, Yangizamon 11</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-3xl overflow-hidden border border-white/5 shadow-sink" data-reveal>
+                    <iframe class="w-full h-[360px] md:h-[420px] grayscale-[0.3] contrast-110"
+                            src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d5996.752054286488!2d69.299597!3d41.27892!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDE2JzQ0LjEiTiA2OcKwMTcnNTguNiJF!5e0!3m2!1sen!2slv!4v1758198200194!5m2!1sen!2slv"
+                            style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="bg-ink-950 border-t border-white/5">
+            <div class="container py-16">
+                <div class="grid md:grid-cols-3 gap-10 items-start">
+                    <div>
+                        <div class="flex items-center gap-3 mb-5">
+                            <img src="images/logo2-removebg-preview.png" alt="AIURU" class="h-14 w-auto">
+                            <div>
+                                <div class="font-display text-white tracking-[0.3em]">AIURU</div>
+                                <div class="text-[10px] tracking-[0.3em] text-gold-400 uppercase">Tashkent</div>
+                            </div>
+                        </div>
+                        <p class="text-slate-400 text-sm max-w-xs leading-relaxed">
+                            Аппаратная коррекция фигуры для мужчин. Более 5 лет опыта.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-white font-display font-semibold text-lg mb-4">Наш филиал</h4>
+                        <div class="text-slate-300">
+                            <strong class="text-white">Ташкент</strong>
+                            <p class="text-slate-400 text-sm mt-1">Yangizamon 11</p>
+                        </div>
+                    </div>
+
+                    <div class="md:text-right">
+                        <h4 class="text-white font-display font-semibold text-lg mb-4">Контакты</h4>
+                        <a href="tel:+998507181330" class="block text-slate-300 hover:text-brand-300 transition-colors mb-1">+998 (50) 718-13-30</a>
+                        <ul class="flex md:justify-end gap-3 mt-4">
+                            <li><a href="https://t.me/Body_aesthetic_aiuru" target="_blank" class="social-chip social-chip--sm"><i class="bi-telegram"></i></a></li>
+                            <li><a href="https://www.instagram.com/body_aesthetic_tashkent?igsh=MWVxdHhqem10bW9oZQ%3D%3D&utm_source=qr" target="_blank" class="social-chip social-chip--sm"><i class="bi-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-14 pt-8 border-t border-white/5 flex flex-wrap items-center justify-between gap-4">
+                    <p class="text-slate-500 text-sm">© 2025 AIURU. Все права защищены.</p>
+                    <a href="#section_1" class="smoothscroll inline-flex items-center gap-2 text-slate-400 hover:text-brand-300 transition-colors text-sm">
+                        Наверх <i class="bi-arrow-up-circle"></i>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </main>
+</div>
+
+<script src="js/click-scroll.js" defer></script>
 </body>
 </html>
