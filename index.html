@@ -66,9 +66,35 @@
     </script>
 
     <link href="css/templatemo-barber-shop.css" rel="stylesheet">
+
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem('aiuru-theme');
+                var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+                if (saved === 'light' || (!saved && prefersLight)) {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+            } catch (e) {}
+        })();
+    </script>
 </head>
 
-<body class="bg-ink-900 text-slate-200 font-body antialiased selection:bg-brand-500/40 selection:text-white">
+<body class="bg-ink-900 text-slate-200 font-body antialiased selection:bg-brand-500/40 selection:text-white is-loading">
+
+<!-- Preloader -->
+<div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__inner">
+        <div class="preloader__logo">
+            <span class="preloader__halo"></span>
+            <img src="images/logo2-removebg-preview.png" alt="AIURU" class="preloader__img">
+        </div>
+        <div class="preloader__brand">AIURU <span>Tashkent</span></div>
+    </div>
+    <div class="preloader__bar">
+        <div class="preloader__bar-fill" id="preloaderBar"></div>
+    </div>
+</div>
 
 <!-- Floating Telegram -->
 <a href="https://t.me/Body_aesthetic_aiuru"
@@ -80,16 +106,22 @@
 </a>
 
 <!-- Mobile top bar -->
-<div class="md:hidden fixed top-0 inset-x-0 z-40 backdrop-blur-xl bg-ink-900/80 border-b border-white/5">
+<div class="topbar-mobile md:hidden fixed top-0 inset-x-0 z-40 backdrop-blur-xl bg-ink-900/80 border-b border-white/5">
     <div class="flex items-center justify-between px-4 py-3">
         <a href="#section_1" class="flex items-center gap-2">
             <img src="images/logo2-removebg-preview.png" alt="AIURU" class="h-9 w-auto">
             <span class="font-display text-sm tracking-widest text-white">AIURU</span>
         </a>
-        <button id="mobileMenuBtn" aria-label="Меню"
-                class="w-11 h-11 rounded-xl border border-white/10 bg-white/5 text-white flex items-center justify-center">
-            <i class="bi-list text-2xl"></i>
-        </button>
+        <div class="flex items-center gap-2">
+            <button class="theme-toggle" data-theme-toggle aria-label="Переключить тему">
+                <i class="bi-sun-fill theme-toggle__sun"></i>
+                <i class="bi-moon-stars-fill theme-toggle__moon"></i>
+            </button>
+            <button id="mobileMenuBtn" aria-label="Меню"
+                    class="w-11 h-11 rounded-xl border border-white/10 bg-white/5 text-white flex items-center justify-center">
+                <i class="bi-list text-2xl"></i>
+            </button>
+        </div>
     </div>
 </div>
 
@@ -128,9 +160,15 @@
                class="w-full inline-flex items-center justify-center gap-2 py-3 rounded-full bg-gradient-to-r from-brand-500 to-brand-600 text-white text-sm font-medium hover:shadow-glow transition-all duration-300 hover:-translate-y-0.5">
                 <i class="bi-telegram"></i> Написать нам
             </a>
-            <a href="tel:+998507181330" class="text-xs tracking-widest text-slate-400 hover:text-brand-300 transition-colors">
-                +998 (50) 718-13-30
-            </a>
+            <div class="flex items-center gap-3 w-full justify-center">
+                <a href="tel:+998507181330" class="text-xs tracking-widest text-slate-400 hover:text-brand-300 transition-colors">
+                    +998 (50) 718-13-30
+                </a>
+                <button class="theme-toggle theme-toggle--sm" data-theme-toggle aria-label="Переключить тему">
+                    <i class="bi-sun-fill theme-toggle__sun"></i>
+                    <i class="bi-moon-stars-fill theme-toggle__moon"></i>
+                </button>
+            </div>
         </div>
     </aside>
 

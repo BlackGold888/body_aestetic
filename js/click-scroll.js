@@ -17,6 +17,37 @@
     const body = doc.body;
     const root = doc.documentElement;
 
+    /* ---------- Preloader ---------- */
+    const preloader = doc.getElementById('preloader');
+    const preloaderBar = doc.getElementById('preloaderBar');
+    if (preloader && preloaderBar) {
+        let progress = 0;
+        let pageLoaded = false;
+        const tick = setInterval(() => {
+            const cap = pageLoaded ? 100 : 85;
+            const step = pageLoaded ? 6 : (cap - progress) * 0.08 + 0.5;
+            progress = Math.min(cap, progress + step);
+            preloaderBar.style.width = progress + '%';
+            if (progress >= 100) {
+                clearInterval(tick);
+                setTimeout(() => {
+                    preloader.classList.add('is-hidden');
+                    body.classList.remove('is-loading');
+                    body.classList.add('is-loaded');
+                }, 250);
+            }
+        }, 80);
+
+        const finish = () => { pageLoaded = true; };
+        if (doc.readyState === 'complete') finish();
+        else window.addEventListener('load', finish);
+        // Safety fallback — never leave preloader stuck
+        setTimeout(finish, 6000);
+    } else {
+        body.classList.remove('is-loading');
+        body.classList.add('is-loaded');
+    }
+
     /* ---------- Smooth scroll ---------- */
     function smoothScrollTo(targetY) {
         window.scrollTo({ top: targetY, behavior: 'smooth' });
@@ -178,4 +209,21 @@
             }
         }, { passive: true });
     }
+
+    /* ---------- Theme toggle ---------- */
+    const THEME_KEY = 'aiuru-theme';
+    const saved = localStorage.getItem(THEME_KEY);
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    const initialTheme = saved || (prefersLight ? 'light' : 'dark');
+    if (initialTheme === 'light') root.setAttribute('data-theme', 'light');
+
+    function toggleTheme() {
+        const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        if (next === 'light') root.setAttribute('data-theme', 'light');
+        else root.removeAttribute('data-theme');
+        localStorage.setItem(THEME_KEY, next);
+    }
+    doc.querySelectorAll('[data-theme-toggle]').forEach((btn) => {
+        btn.addEventListener('click', toggleTheme);
+    });
 })();
